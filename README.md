@@ -1,3 +1,3 @@
 # koa_template
 
-git clone and 
+git clone and npm init
