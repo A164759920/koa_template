@@ -1,3 +1,4 @@
 # koa_template
-
-git clone and npm init
+- git clone
+- npm install
+- node index.js
