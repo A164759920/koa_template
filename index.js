@@ -1,5 +1,7 @@
 // system require
 const Path = require("path");
+const http = require("http");
+const https = require("https");
 
 // node_module require
 const Koa = require("koa");
@@ -10,12 +12,17 @@ const mount = require("koa-mount");
 
 // custom require
 const errHandler = require("./errorHandle/errHandler.js");
-const { APP_PORT, MOUNT_NAME } = require("./config.default.js");
+const {
+  HTTP_PORT,
+  HTTPS_PORT,
+  IS_HTTPS,
+  MOUNT_NAME,
+} = require("./config.default.js");
 const { router } = require("./router/index");
 
 const server = new Koa();
 server
-  .use(mount(MOUNT_NAME, static(Path.join(__dirname, './static'))))
+  .use(mount(MOUNT_NAME, static(Path.join(__dirname, "./static"))))
   .use(cors())
   .use(
     koaBody({
@@ -30,8 +37,16 @@ server
   )
   .use(router.routes())
   .use(router.allowedMethods());
-
+// 开启错误上报
 server.on("error", errHandler);
-server.listen(APP_PORT, () => {
-  console.log(`'server is running on ${APP_PORT}`);
-});
+
+if (IS_HTTPS === "on") {
+  const { options } = require("./ssl/index.js");
+  https.createServer(options, server.callback()).listen(HTTPS_PORT, () => {
+    console.log(`HTTPS server is running on: ${HTTPS_PORT}`);
+  });
+} else {
+  http.createServer(server.callback()).listen(HTTP_PORT, () => {
+    console.log(`HTTP server is running on: ${HTTP_PORT}`);
+  });
+}

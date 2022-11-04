@@ -9,6 +9,7 @@ const {
 } = require("../service/Files.service.js");
 
 const { translateErrorCode } = require("../service/error.service.js");
+const errorType = require("../errorHandle/errorType.js");
 
 function test_ErrorController(ctx) {
   // 上报错误
@@ -32,25 +33,51 @@ async function test_DeleteController(ctx) {
   };
 }
 async function test_ChangeController(ctx) {
-  const res = await changeFilenameAndSave("22.txt", "789.txt", "stawtic");
-  const { errorType } = res;
-  if (errorType) {
-    Object.assign(res, { errorType: translateErrorCode(errorType) });
+  let { oldname, newname, dirname } = ctx.query;
+  oldname = oldname || "test.txt";
+  newname = newname || "reName.txt";
+  if (dirname) {
+    const res = await changeFilenameAndSave(oldname, newname, dirname);
+    const { errorType } = res;
+    if (errorType) {
+      Object.assign(res, { errorType: translateErrorCode(errorType) });
+    }
+    ctx.body = {
+      data: res,
+    };
+  } else {
+    ctx.body = {
+      data: {
+        code: 1,
+        msg: "重命名失败",
+        errorType: "参数解析错误",
+      },
+    };
   }
-  ctx.body = {
-    data: res,
-  };
 }
 async function test_scanController(ctx) {
-  const res = await scanFilesByDirName("service");
-  const { errorType } = res;
-  if (errorType) {
-    Object.assign(res, { errorType: translateErrorCode(errorType) });
-  }
+  let { dirname } = ctx.query;
+  dirname = dirname || "static";
+  if (dirname) {
+    console.log("解析的参数", dirname);
+    const res = await scanFilesByDirName(dirname);
+    const { errorType } = res;
+    if (errorType) {
+      Object.assign(res, { errorType: translateErrorCode(errorType) });
+    }
 
-  ctx.body = {
-    data: res,
-  };
+    ctx.body = {
+      data: res,
+    };
+  } else {
+    ctx.body = {
+      data: {
+        code: 1,
+        msg: "扫描失败",
+        errorType: "参数解析错误",
+      },
+    };
+  }
 }
 module.exports = {
   test_ErrorController,

@@ -3,7 +3,12 @@ const fs = require("fs");
 const Path = require("path");
 
 // custom require
-const { HOST, APP_PORT } = require("../config.default.js"); // 引入env中的环境变量
+const {
+  HOST,
+  HTTP_PORT,
+  HTTPS_PORT,
+  IS_HTTPS,
+} = require("../config.default.js"); // 引入env中的环境变量
 
 // 服务器根路径
 const rootPath = Path.resolve(__dirname, "..");
@@ -166,10 +171,15 @@ async function scanFilesByDirName(rel_aimDirName) {
  */
 function createFrontedUrl(rel_filePath) {
   //   const res = `${HOST}:${APP_PORT}${filePath}`;
-  return `${HOST}:${APP_PORT}${rel_filePath}`;
+  if (IS_HTTPS === "on") {
+    return `${HOST}:${HTTPS_PORT}${rel_filePath}`;
+  } else {
+    return `${HOST}:${HTTP_PORT}${rel_filePath}`;
+  }
 }
 module.exports = {
   changeFilenameAndSave,
   deleteFile,
   scanFilesByDirName,
+  createFrontedUrl,
 };
