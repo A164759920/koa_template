@@ -14,11 +14,15 @@
   - HOST 配置域名 [default:http://127.0.0.1]
   - MOUNT_NAME 静态资源文件夹挂载名称 [defalut:/static]
 
-# 自动配置 HTTPS 证书 + 服务器
+# 【2022/11/3】自动配置 HTTPS 证书 + 服务器
 
 - ① .env 中设置 IS_HTTPS = on
 - ② 将 .key 和 .pem 文件放入 ssl 文件夹下
 - ③ npm run dev 开启 HTTPS 服务器
+
+# 【2022/11/5】支持腾讯云存储桶 sts 鉴权接口
+
+- 详见 qcloud-cos 文件夹下 README.md
 
 # 测试 API
 
