@@ -6,6 +6,7 @@ const {
   deleteFile,
   changeFilenameAndSave,
   scanFilesByDirName,
+  mergeMultiFile,
 } = require("../service/Files.service.js");
 
 const { translateErrorCode } = require("../service/error.service.js");
@@ -79,10 +80,26 @@ async function test_scanController(ctx) {
     };
   }
 }
+async function test_uploadController(ctx) {
+  const oldFilename = ctx.request.files.chunk.newFilename;
+  const newFilename = ctx.request.files.chunk.originalFilename;
+  const res = await changeFilenameAndSave(oldFilename, newFilename, "static");
+  ctx.body = {
+    res,
+  };
+}
+async function test_mergeController(ctx) {
+  console.log("merge执行")
+  const { hash, fileType, fileLength } = ctx.query;
+  // FIXME:ctx.body的异步逻辑有问题，已在mergeMutiFile中返回
+  const res = await mergeMultiFile(hash, fileType, fileLength, "static",ctx);
+}
 module.exports = {
   test_ErrorController,
   test_ConnectController,
   test_DeleteController,
   test_ChangeController,
   test_scanController,
+  test_mergeController,
+  test_uploadController,
 };
