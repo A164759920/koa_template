@@ -31,7 +31,7 @@
     ## mergeMultiFile(hash, fileType, fileLength, rel_aimDirPath, ctx)
     【自用】
     ***请配合对应前端js使用***
-    https://github.com/A164759920/Fronted_Utils_JS/blob/main/chunkFileUpload.js
+    <https://github.com/A164759920/Fronted_Utils_JS/blob/main/chunkFileUpload.js>
     /**
         * 基于hash的merge切片上传的文件
         * @param {String} hash 文件hash值

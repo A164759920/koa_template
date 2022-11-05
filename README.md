@@ -52,3 +52,16 @@
   - Method: get
   - queryParam:
     - dirname : 文件名名称 [default: static] 必填
+
+- 切片文件上传 【自用】
+
+  - http:// 域名: 端口/upload
+
+    - Method : post
+
+  - http:// 域名: 端口/merge
+    - Method ：get
+    - queryParam:
+      - hash : 文件 hash 值
+      - fileType ：文件类型
+      - fileLength ：文件切片总数
