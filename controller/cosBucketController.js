@@ -1,23 +1,13 @@
 const STS = require("qcloud-cos-sts/sdk/sts.js");
 async function cosBucketController(ctx) {
-  const { config } = require("../qcloud-cos/config.default.js");
+  const { config, action } = require("../qcloud-cos/config.default.js");
   var shortBucketName = config.bucket.substr(0, config.bucket.lastIndexOf("-"));
   var appId = config.bucket.substr(1 + config.bucket.lastIndexOf("-"));
   var policy = {
     version: "2.0",
     statement: [
       {
-        action: [
-          // 简单上传
-          "name/cos:PutObject",
-          "name/cos:PostObject",
-          // 分片上传
-          "name/cos:InitiateMultipartUpload",
-          "name/cos:ListMultipartUploads",
-          "name/cos:ListParts",
-          "name/cos:UploadPart",
-          "name/cos:CompleteMultipartUpload",
-        ],
+        action, // 请在qcloud-cos/config.default.js中配置action
         effect: "allow",
         principal: { qcs: ["*"] },
         resource: [
