@@ -31,7 +31,7 @@
 - Method: GET
 - 返回值 ：参考 https://cloud.tencent.com/document/product/436/11459#.E9.85.8D.E7.BD.AE.E9.A1.B9
 
-- 该接口请配合前端使用 参考：https://github.com/A164759920/Fronted_Utils_JS/blob/main/cosBucket.js
+- 该接口请配合前端使用 参考：https://github.com/A164759920/Fronted_Utils_JS/tree/main/COS_Bucket
 
 ## 授权前端操作
 
