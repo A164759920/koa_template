@@ -1,6 +1,6 @@
 const STS = require("qcloud-cos-sts/sdk/sts.js");
 async function cosBucketController(ctx) {
-  const { config, action } = require("../qcloud-cos/config.default.js");
+  const { config, action } = require("../qcloud-cos/config.local.js");
   var shortBucketName = config.bucket.substr(0, config.bucket.lastIndexOf("-"));
   var appId = config.bucket.substr(1 + config.bucket.lastIndexOf("-"));
   var policy = {
