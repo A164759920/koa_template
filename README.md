@@ -22,6 +22,11 @@
 
 # 【2022/11/5】支持腾讯云存储桶 sts 鉴权接口
 
+- 【注意】: 使用时将/controller/cosBucketController中
+    const { config, action } = require("../qcloud-cos/config.local.js");
+    替换为:
+    const { config, action } = require("../qcloud-cos/config.default.js");
+    并在config.default.js中配置你的存储桶信息
 - 详见 qcloud-cos 文件夹下 README.md
 
 # 测试 API
