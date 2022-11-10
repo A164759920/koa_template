@@ -24,10 +24,10 @@ const action = [
   // 查看存储桶对象
   "name/cos:GetBucket",
   // 下载存储桶对象
-  "name/cos:GetObject"
+  "name/cos:GetObject",
 ];
 
 module.exports = {
   config,
-  action
+  action,
 };

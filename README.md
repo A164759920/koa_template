@@ -11,7 +11,8 @@
   - HTTP_PORT HTTP 服务器启动端口 [default:8888]
   - HTTPS_PORT HTTPS 服务器启动端口 [defult:8899]
   - IS_HTTPS 是否开启 HTTPS 服务器 on 为开启 [default:off]
-  - HOST 配置域名 [default:http://127.0.0.1]
+  - HTTP_HOST 配置 HTTP 域名 [default:http://127.0.0.1]
+  - HTTPS_HOST 配置 HTTPS 域名 [一般与 ssl 绑定域名证书配套]
   - MOUNT_NAME 静态资源文件夹挂载名称 [defalut:/static]
 
 # 【2022/11/3】自动配置 HTTPS 证书 + 服务器
@@ -22,7 +23,7 @@
 
 # 【2022/11/5】支持腾讯云存储桶 sts 鉴权接口
 
-- ***【注意】***:
+- **_【注意】_**:
   使用时将/controller/cosBucketController 中<br>
   const { config, action } = require("../qcloud-cos/config.local.js");<br>
   替换为:<br>
@@ -33,22 +34,22 @@
 # 测试 API
 
 - 测试连通性
-- http:// 域名:APP_PORT/test_test
+- http:// 域名:端口/test_test
 
   - Method: get
 
 - 错误上报测试
-- http:// 域名:APP_PORT/test_errTest
+- http:// 域名:端口/test_errTest
 
   - Method: get
 
 - 删除文件测试
-- http:// 域名:APP_PORT/test_delete
+- http:// 域名:端口/test_delete
 
   - Method: get
 
 - 修改文件名称测试
-- http:// 域名:APP_PORT/test_change
+- http:// 域名:端口/test_change
 
   - Method: get
   - queryParam:
@@ -57,7 +58,7 @@
     - dirname ：所在文件夹 [default : 无] 必填
 
 - 扫描指定文件夹文件
-- http:// 域名:APP_PORT/test_scan
+- http:// 域名:端口/test_scan
 
   - Method: get
   - queryParam:

@@ -35,9 +35,9 @@
 
 ## 授权前端操作
 
-    在 cosBucketController的policy对象中需对前端的每一项操作进行授权
-    后方可使用对应功能，否则 ***前端报错403 Forbidden***
+在 cosBucketController的policy对象中需对前端的每一项操作进行授权
+后方可使用对应功能，否则 ***前端报错403 Forbidden***
 
-    权限表：https://cloud.tencent.com/document/product/436/31923#.E6.A3.80.E7.B4.A2.E5.AD.98.E5.82.A8.E6.A1.B6.E5.8F.8A.E5.85.B6.E6.9D.83.E9.99.90
+权限表：https://cloud.tencent.com/document/product/436/31923#.E6.A3.80.E7.B4.A2.E5.AD.98.E5.82.A8.E6.A1.B6.E5.8F.8A.E5.85.B6.E6.9D.83.E9.99.90
 
-    例如 name/cos:PutObject 对应前端 PubObject 方法
+例如 name/cos:PutObject 对应前端 PubObject 方法
