@@ -15,6 +15,17 @@
   - HTTPS_HOST 配置 HTTPS 域名 [一般与 ssl 绑定域名证书配套]
   - MOUNT_NAME 静态资源文件夹挂载名称 [defalut:/static]
 
+# 【2022/11/12】 使用 pm2 持久化守护服务器 + bug 修复
+
+- **_环境配置-在服务器运行环境下按安装 PM2_**
+- ①.安装: **npm install pm2 -g**
+- ②. 使用:
+  - 开发调试情况下建议使用: **npm run dev** 或 **node index.js** 不启用 pm2
+  - 持久化部署情况下: **npm run build** 或 **pm2 start index.js** 启用 pm2 守护 服务器。
+- ③.pm2 官网:https://pm2.keymetrics.io/docs/usage/quick-start/
+
+- ④.修复了 sts 接口鉴权失败时错误上报的 bug
+
 # 【2022/11/3】自动配置 HTTPS 证书 + 服务器
 
 - ① .env 中设置 IS_HTTPS = on

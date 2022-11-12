@@ -1,2 +1,4 @@
 /node_modules
 /qcloud-cos/config.local.js
+/ssl/8514202_test.api.roadrunner2002.top.key
+/ssl/8514202_test.api.roadrunner2002.top.pem
