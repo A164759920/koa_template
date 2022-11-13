@@ -1,8 +1,13 @@
-# koa_template
+# RR_koa 框架
 
-- git clone
-- npm install
-- node index.js 或者 npm run dev
+## 基于 koa 开发的 MVC 模式轻量后端框架
+
+# 使用步骤
+
+- ① git clone
+- ② npm install pm2 -g
+- ③ npm install
+- ④ node index.js 或者 npm run dev
 
 # .env
 
@@ -11,13 +16,11 @@
   - HTTP_PORT HTTP 服务器启动端口 [default:8888]
   - HTTPS_PORT HTTPS 服务器启动端口 [defult:8899]
   - IS_HTTPS 是否开启 HTTPS 服务器 on 为开启 [default:off]
-  - HTTP_HOST 配置 HTTP 域名 [default:http://127.0.0.1]
-  - HTTPS_HOST 配置 HTTPS 域名 [一般与 ssl 绑定域名证书配套]
   - MOUNT_NAME 静态资源文件夹挂载名称 [defalut:/static]
 
 # 【2022/11/12】 使用 pm2 持久化守护服务器 + bug 修复
 
-- **_环境配置-在服务器运行环境下按安装 PM2_**
+- **_环境配置-在服务器运行环境下安装 PM2_**
 - ①.安装: **npm install pm2 -g**
 - ②. 使用:
   - 开发调试情况下建议使用: **npm run dev** 或 **node index.js** 不启用 pm2
