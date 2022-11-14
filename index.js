@@ -12,6 +12,7 @@ const mount = require("koa-mount");
 
 // custom require
 const errHandler = require("./errorHandle/errHandler.js");
+
 const {
   HTTP_PORT,
   HTTPS_PORT,
@@ -43,10 +44,10 @@ server.on("error", errHandler);
 if (IS_HTTPS === "on") {
   const { options } = require("./ssl/index.js");
   https.createServer(options, server.callback()).listen(HTTPS_PORT, () => {
-    console.log(`HTTPS server is running on: ${HTTPS_PORT}`);
+    console.log(`🚀HTTPS server is running on: ${HTTPS_PORT}`);
   });
 } else {
   http.createServer(server.callback()).listen(HTTP_PORT, () => {
-    console.log(`HTTP server is running on: ${HTTP_PORT}`);
+    console.log(`🚀 HTTP server is running on: ${HTTP_PORT}`);
   });
 }
