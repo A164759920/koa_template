@@ -1,13 +1,14 @@
-# RR_koa 框架
+# 🔥RR_koa 框架
 
 ## 基于 koa 开发的 MVC 模式轻量后端框架
 
 # 使用步骤
 
 - ① git clone
-- ② npm install pm2 -g
+- ② npm install pm2 -g [非必须，持久部署建议安装]
 - ③ npm install
-- ④ node index.js 或者 npm run dev
+- ④ node index.js 或者 npm run dev **_🔊develop 模式，dev 启动 HMR_**
+- ⑤ npm run build **_🔊production 模式，build 启动 pm2_**
 
 # .env
 
