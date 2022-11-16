@@ -19,6 +19,36 @@
   - IS_HTTPS 是否开启 HTTPS 服务器 on 为开启 [default:off]
   - MOUNT_NAME 静态资源文件夹挂载名称 [defalut:/static]
 
+# 【2022/11/16】 sequelize + mysql2 + 更新 middleware 层 + 更新 service 层
+
+## 📄1.sequelize + mysql2 实现数据库连接
+
+🔨**使用数据库前需先在.env 中进行配置**
+
+- MYSQL_HOST = 数据库域名
+- MYSQL_PORT = 数据库端口号
+- MYSQL_USER = 数据库登录用户
+- MYSQL_PWD = 登录用户密码
+- MYSQL_DB = 连接数据库名称
+
+**数据库在 ORM 中抽象以下两层**
+
+- ①.database 层
+  - 该层每个 js 文件导出数据库数据库实例
+- ②.model 层
+  - 该层每个 js 文件定义并导出数据库**_每张表_**的元组模型（每一行）
+
+## 📄2.ip 查询 middleware
+
+**⭐ 获取调用接口者的 ip 地址，并根据 ip 地址查询归属地信息**
+
+- 导出:**_setIP 函数_**
+- 接口:目前该中间件用于 **http(s)://域名:端口/test_test**
+
+## 📄3.ip 查询 service
+
+\*具体实现将 **_middleware_** 查询内容保存到**_数据库_**的操作\*
+
 # 【2022/11/12】 使用 pm2 持久化守护服务器 + bug 修复
 
 - **_环境配置-在服务器运行环境下安装 PM2_**
