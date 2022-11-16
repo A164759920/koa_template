@@ -52,13 +52,14 @@ async function cosBucketController(ctx) {
       data: res,
     };
   } catch (error) {
-    console.log("sts调用失败",error);
+    console.log("sts调用失败", error);
     ctx.body = {
       code: 1,
       msg: "sts调用失败",
       errorType: error,
     };
   }
+  await next();
 }
 
 module.exports = {

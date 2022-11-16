@@ -16,6 +16,9 @@ const {
   test_mergeController,
 } = require("../controller/testController.js");
 const { cosBucketController } = require("../controller/cosBucketController.js");
+
+const { setIP } = require("../middleware/ip.middleware.js");
+
 // 测试路由
 router.get("/test_errTest", test_ErrorController);
 router.get("/test_test", test_ConnectController);
@@ -24,7 +27,7 @@ router.get("/test_change", test_ChangeController);
 router.get("/test_scan", test_scanController);
 router.post("/upload", test_uploadController);
 router.get("/merge", test_mergeController);
-router.all("/sts", cosBucketController);
+router.all("/sts", cosBucketController, setIP);
 module.exports = {
   router,
 };

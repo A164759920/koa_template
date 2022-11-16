@@ -11,12 +11,12 @@ const {
 
 const { translateErrorCode } = require("../service/error.service.js");
 const errorType = require("../errorHandle/errorType.js");
-
+const Axios = require("axios");
 function test_ErrorController(ctx) {
   // 上报错误
   return ctx.app.emit("error", testError, ctx);
 }
-function test_ConnectController(ctx) {
+async function test_ConnectController(ctx) {
   ctx.body = {
     code: 1,
     msg: "服务器正常响应",
@@ -89,10 +89,10 @@ async function test_uploadController(ctx) {
   };
 }
 async function test_mergeController(ctx) {
-  console.log("merge执行")
+  console.log("merge执行");
   const { hash, fileType, fileLength } = ctx.query;
   // FIXME:ctx.body的异步逻辑有问题，已在mergeMutiFile中返回
-  const res = await mergeMultiFile(hash, fileType, fileLength, "static",ctx);
+  const res = await mergeMultiFile(hash, fileType, fileLength, "static", ctx);
 }
 module.exports = {
   test_ErrorController,
