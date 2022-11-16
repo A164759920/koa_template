@@ -47,7 +47,8 @@
 
 ## 📄3.ip 查询 service
 
-\*具体实现将 **_middleware_** 查询内容保存到**_数据库_**的操作\*
+具体实现将 **_ip middleware 层_** 查询的内容保存到**_数据库_**的操作</br>
+详见 **service/ip.service.js**
 
 # 【2022/11/12】 使用 pm2 持久化守护服务器 + bug 修复
 
