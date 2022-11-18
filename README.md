@@ -1,23 +1,30 @@
 # 🔥RR_koa 框架
 
-## 基于 koa 开发的 MVC 模式轻量后端框架
+## 基于主分支开发的网站服务器
 
-# 使用步骤
+**⚡ 该版本目前可供网站前端/后台共同使用**
 
-- ① git clone
-- ② npm install pm2 -g [非必须，持久部署建议安装]
-- ③ npm install
-- ④ node index.js 或者 npm run dev **_🔊develop 模式，dev 启动 HMR_**
-- ⑤ npm run build **_🔊production 模式，build 启动 pm2_**
+- **_🔥 前端_**：https://www.roadrunner2002.top/
+  - **_前端仓库_**：https://github.com/A164759920/roadrunner
+- **_👀 后台_**：https://sls-website-ap-nanjing-xw8eu3mu-1313270013.cos-website.ap-nanjing.myqcloud.com/
+  - **_后台仓库_**：https://github.com/A164759920/roadrunner_backed
 
-# .env
+# 【2022/11/16】重要更新
 
-- 在.env 中定义你的环境变量
-- default
-  - HTTP_PORT HTTP 服务器启动端口 [default:8888]
-  - HTTPS_PORT HTTPS 服务器启动端口 [defult:8899]
-  - IS_HTTPS 是否开启 HTTPS 服务器 on 为开启 [default:off]
-  - MOUNT_NAME 静态资源文件夹挂载名称 [defalut:/static]
+## ① 重构部分 Controller
+
+- testController 供前端使用
+- backedController 供后台使用
+
+## ② 更新 middleware 层
+
+- 新增 ua.middleware
+  - 将 UA 经 parser 后挂载至 ctx.ua 下
+
+## ③ 更新 service 层
+
+- 新增 ua.service
+  - 提供包括但不限于存储 ua 数据，获取 ua 数据等功能
 
 # 【2022/11/16】 sequelize + mysql2 + 更新 middleware 层 + 更新 service 层
 
@@ -76,49 +83,3 @@
   const { config, action } = require("../qcloud-cos/config.default.js");<br>
   并在 config.default.js 中配置你的存储桶信息<br>
 - 详见 qcloud-cos 文件夹下 README.md
-
-# 测试 API
-
-- 测试连通性
-- http:// 域名:端口/test_test
-
-  - Method: get
-
-- 错误上报测试
-- http:// 域名:端口/test_errTest
-
-  - Method: get
-
-- 删除文件测试
-- http:// 域名:端口/test_delete
-
-  - Method: get
-
-- 修改文件名称测试
-- http:// 域名:端口/test_change
-
-  - Method: get
-  - queryParam:
-    - oldname : 旧文件名 [defaut: test.txt] 必填
-    - newname : 新文件名 [defalut: reName] 必填
-    - dirname ：所在文件夹 [default : 无] 必填
-
-- 扫描指定文件夹文件
-- http:// 域名:端口/test_scan
-
-  - Method: get
-  - queryParam:
-    - dirname : 文件名名称 [default: static] 必填
-
-- 切片文件上传 【自用】
-
-  - http:// 域名: 端口/upload
-
-    - Method : post
-
-  - http:// 域名: 端口/merge
-    - Method ：get
-    - queryParam:
-      - hash : 文件 hash 值
-      - fileType ：文件类型
-      - fileLength ：文件切片总数
