@@ -1,7 +1,7 @@
 const axios = require("axios");
 
 //导入servince
-const setIptoTABLE = require("../service/ip.service.js");
+const { setIptoTABLE, inet_aton } = require("../service/ip.service.js");
 async function setIP(ctx, next) {
   // 获取IPv4地址
   const getUserIp = (req) => {
@@ -12,7 +12,8 @@ async function setIP(ctx, next) {
       req.connection.socket.remoteAddress
     );
   };
-  const ip = getUserIp(ctx.req);
+  const ip = getUserIp(ctx.req); // ipv4地址
+  ctx.parser_ip = inet_aton(ip); // 挂载到ctx下
   // 解析ipv4地址信息
   try {
     const res = await axios.get(`https://ip.useragentinfo.com/json?ip=${ip}`);

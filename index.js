@@ -43,11 +43,13 @@ server.on("error", errHandler);
 
 if (IS_HTTPS === "on") {
   const { options } = require("./ssl/index.js");
-  https.createServer(options, server.callback()).listen(HTTPS_PORT, () => {
-    console.log(`🚀HTTPS server is running on: ${HTTPS_PORT}`);
-  });
+  https
+    .createServer(options, server.callback())
+    .listen(HTTPS_PORT, "0.0.0.0", () => {
+      console.log(`🚀HTTPS server is running on: ${HTTPS_PORT}`);
+    });
 } else {
-  http.createServer(server.callback()).listen(HTTP_PORT, () => {
+  http.createServer(server.callback()).listen(HTTP_PORT, "0.0.0.0", () => {
     console.log(`🚀 HTTP server is running on: ${HTTP_PORT}`);
   });
 }

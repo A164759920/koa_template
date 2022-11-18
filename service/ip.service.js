@@ -77,4 +77,67 @@ function setIptoTABLE(ipObj) {
     });
 }
 
-module.exports = setIptoTABLE;
+/**
+ *
+ * @param {Array} attributes
+ */
+async function getInfoFromTABLE(attributes) {
+  try {
+    const res = await IP.findAll({
+      attributes,
+      order: [["count", "DESC"]],
+    });
+    if (res) {
+      // 转换ipv4地址为0.0.0.0形式
+      return {
+        code: 0,
+        msg: "查询成功",
+        data: res,
+      };
+    } else {
+      console.log("其他错误");
+      return {
+        code: 2,
+        msg: "其他错误",
+      };
+    }
+  } catch (error) {
+    console.log("查询失败", error);
+    return {
+      code: 1,
+      msg: "查询失败",
+      error: error,
+    };
+  }
+}
+/**
+ * 获取访问总量最高的五个省份
+ */
+async function getTop5Province() {
+  const querySQL =
+    "SELECT province,SUM(count) as count FROM ipinfo GROUP BY province ORDER BY count DESC LIMIT 5";
+  try {
+    const res = await seq.query(querySQL);
+    if (res) {
+      return {
+        code: 0,
+        msg: "ip查询成功",
+        data: res[0],
+      };
+    }
+  } catch (error) {
+    return {
+      code: 1,
+      msg: "ip查询失败",
+      error,
+    };
+  }
+}
+
+module.exports = {
+  setIptoTABLE,
+  getInfoFromTABLE,
+  getTop5Province,
+  inet_aton,
+  inet_ntoa,
+};

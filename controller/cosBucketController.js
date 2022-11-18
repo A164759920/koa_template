@@ -37,7 +37,7 @@ async function cosBucketController(ctx) {
         },
         function (err, tempKeys) {
           if (err) {
-            resolve(err);
+            reject(err);
           } else {
             // var result = JSON.stringify(err || tempKeys) || "";
             // resolve(result);

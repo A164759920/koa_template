@@ -10,7 +10,7 @@ const seq = new Sequelize(MYSQL_DB, MYSQL_USER, MYSQL_PWD, {
   host: MYSQL_HOST,
   port: MYSQL_PORT,
   dialect: "mysql",
-  timezone: "+08:00",
+  // timezone: "+08:00",
 });
 seq
   .authenticate()

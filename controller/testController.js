@@ -1,26 +1,38 @@
-// 导入错误类型errorType
-const { testError } = require("../errorHandle/errorType.js");
-
 //导入service层服务
+// 文件层service
 const {
   deleteFile,
   changeFilenameAndSave,
   scanFilesByDirName,
   mergeMultiFile,
 } = require("../service/Files.service.js");
-
+// 错误层service
 const { translateErrorCode } = require("../service/error.service.js");
 const errorType = require("../errorHandle/errorType.js");
-const Axios = require("axios");
+const { testError } = require("../errorHandle/errorType.js");
+// ua层service
+const { setUAtoTABLE } = require("../service/ua.service.js");
+
 function test_ErrorController(ctx) {
   // 上报错误
   return ctx.app.emit("error", testError, ctx);
 }
 async function test_ConnectController(ctx) {
-  ctx.body = {
-    code: 1,
-    msg: "服务器正常响应",
-  };
+  // 原本应该在此进行UA和IP信息进数据库，IP写得早不进行重构了
+  // 以存储UA数据到数据库为例
+  // console.log("挂载数据查询", ctx.parser_ip, ctx.ua);
+  try {
+    const res = await setUAtoTABLE(ctx.parser_ip, ctx.ua);
+    if (res) {
+      ctx.body = res;
+    }
+  } catch (error) {
+    ctx.body = {
+      code: 2,
+      msg: "系统错误",
+      error,
+    };
+  }
 }
 async function test_DeleteController(ctx) {
   deleArray = ["1.txt", "22.txt", "3.txt"];
@@ -94,6 +106,7 @@ async function test_mergeController(ctx) {
   // FIXME:ctx.body的异步逻辑有问题，已在mergeMutiFile中返回
   const res = await mergeMultiFile(hash, fileType, fileLength, "static", ctx);
 }
+
 module.exports = {
   test_ErrorController,
   test_ConnectController,

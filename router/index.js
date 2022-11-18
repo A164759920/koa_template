@@ -5,7 +5,7 @@ const fs = require("fs");
 const Router = require("koa-router");
 const router = new Router();
 
-// 导入 controller
+// 导入 网页controller
 const {
   test_ErrorController,
   test_ConnectController,
@@ -17,17 +17,32 @@ const {
 } = require("../controller/testController.js");
 const { cosBucketController } = require("../controller/cosBucketController.js");
 
-const { setIP } = require("../middleware/ip.middleware.js");
+//导入后台controller
+const {
+  backed_ipController,
+  backed_uaController,
+} = require("../controller/backedController.js");
 
-// 测试路由
+// 导入 middleware
+const { setIP } = require("../middleware/ip.middleware.js");
+const { setUA } = require("../middleware/ua.middleware.js");
+
+// 网页接口
+// 测试API
 router.get("/test_errTest", test_ErrorController);
-router.get("/test_test", test_ConnectController);
+router.get("/test_test", setUA, setIP, test_ConnectController);
 router.get("/test_delete", test_DeleteController);
 router.get("/test_change", test_ChangeController);
 router.get("/test_scan", test_scanController);
+// 文件API
 router.post("/upload", test_uploadController);
 router.get("/merge", test_mergeController);
-router.all("/sts", cosBucketController, setIP);
+// 存储桶API
+router.all("/sts", cosBucketController);
+
+// 后台接口
+router.get("/back_ip", backed_ipController);
+router.get("/back_ua", backed_uaController)
 module.exports = {
   router,
 };
