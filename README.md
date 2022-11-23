@@ -22,8 +22,8 @@
 ## ②. 接口调整
 
 - ip.middleware 将会挂载**data_ip**和**parse_ip**两项数据
-  - **data_ip:**查询的 ip 归属地信息
-  - **parse_ip:**ipv4 的 32 位形式
+  - **data_ip**:查询的 ip 归属地信息
+  - **parse_ip**:ipv4 的 32 位形式
 - test_test 接口返回值优化
   - **UA 状态** + **Email 状态** 同时返回
 
