@@ -12,19 +12,35 @@ const errorType = require("../errorHandle/errorType.js");
 const { testError } = require("../errorHandle/errorType.js");
 // ua层service
 const { setUAtoTABLE } = require("../service/ua.service.js");
-
+// email层service
+const { throttleSendMail } = require("../service/email.service.js");
 function test_ErrorController(ctx) {
   // 上报错误
   return ctx.app.emit("error", testError, ctx);
 }
+
 async function test_ConnectController(ctx) {
   // 原本应该在此进行UA和IP信息进数据库，IP写得早不进行重构了
   // 以存储UA数据到数据库为例
   // console.log("挂载数据查询", ctx.parser_ip, ctx.ua);
   try {
-    const res = await setUAtoTABLE(ctx.parser_ip, ctx.ua);
+    // const res = await setUAtoTABLE(ctx.parser_ip, ctx.ua);
+    const res = await Promise.allSettled([
+      setUAtoTABLE(ctx.parser_ip, ctx.ua),
+      throttleSendMail(ctx.data_ip, ctx.ua),
+    ]);
+    //res为数组
     if (res) {
-      ctx.body = res;
+      let flag1 = res[0].status === "fulfilled" ? true : false;
+      let flag2 = res[1].status === "fulfilled" ? true : false;
+      ctx.body = {
+        code: 0,
+        msg: "接口正常调用",
+        data: {
+          UA: flag1 ? "UA存储正常" : "UA存储失败",
+          Email: flag2 ? "[Throttle]Email发送正常(2min/次)" : "Email发送失败",
+        },
+      };
     }
   } catch (error) {
     ctx.body = {

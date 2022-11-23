@@ -18,8 +18,9 @@ async function setIP(ctx, next) {
   try {
     const res = await axios.get(`https://ip.useragentinfo.com/json?ip=${ip}`);
     if (res) {
-      console.log("查询数据", res.data);
+      // console.log("查询数据", res.data);
       setIptoTABLE(res.data);
+      ctx.data_ip = res.data; // 挂载到ctx下
     }
   } catch (error) {
     console.log("查询失败", error);

@@ -1,7 +1,3 @@
-// system require
-const Path = require("path");
-const fs = require("fs");
-
 const Router = require("koa-router");
 const router = new Router();
 
@@ -42,7 +38,8 @@ router.all("/sts", cosBucketController);
 
 // 后台接口
 router.get("/back_ip", backed_ipController);
-router.get("/back_ua", backed_uaController)
+router.get("/back_ua", backed_uaController);
+
 module.exports = {
   router,
 };
