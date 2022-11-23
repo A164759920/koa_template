@@ -16,15 +16,15 @@
 **⚡ 主站被访问时将自动发送邮件提醒**
 **详见 service 层 email.service.js 文件**
 
-- **nodemailer** 实现邮件发送
-- **lodash/throttle** 实现**_节流发送（2min/次）_**
+- **nodemailer**： 实现邮件发送
+- **lodash/throttle**： 实现**节流发送(2min/次)**
 
 ## ②. 接口调整
 
-- ip.middleware 将会挂载**data_ip**和**parse_ip**两项数据
-  - **data_ip**:查询的 ip 归属地信息
-  - **parse_ip**:ipv4 的 32 位形式
-- test_test 接口返回值优化
+- **ip.middleware** 将会挂载**data_ip**和**parse_ip**两项数据
+  - **data_ip**：查询的 ip 归属地信息
+  - **parse_ip**：ipv4 的 32 位形式
+- **test_test** 接口返回值优化
   - **UA 状态** + **Email 状态** 同时返回
 
 # 【2022/11/16】重要更新
