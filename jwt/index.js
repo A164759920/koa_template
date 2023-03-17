@@ -1,5 +1,4 @@
 const jwt = require("jsonwebtoken");
-const { reject } = require("lodash");
 
 const { algorithm, secretKey, expiresTime } = require("./config.local.js");
 /**
