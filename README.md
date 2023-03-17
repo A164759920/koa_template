@@ -2,7 +2,7 @@
 
 ## 基于 koa 开发的 MVC 模式轻量后端框架【自用】
 
-## ⭐⭐⭐main branch 停止更新，基于2022/11/16版本改造的各**实践版本**请到分支查看
+## 基于 2022/11/16 版本改造的各**实践版本**请到分支查看
 
 # 使用步骤
 
@@ -20,6 +20,11 @@
   - HTTPS_PORT HTTPS 服务器启动端口 [defult:8899]
   - IS_HTTPS 是否开启 HTTPS 服务器 on 为开启 [default:off]
   - MOUNT_NAME 静态资源文件夹挂载名称 [defalut:/static]
+
+# 【2023/03/17】 JWT 模块
+
+**该模块提供如的功能详见**
+https://github.com/A164759920/koa_template/tree/main/jwt
 
 # 【2022/11/16】 sequelize + mysql2 + 更新 middleware 层 + 更新 service 层
 
