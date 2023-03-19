@@ -1,0 +1,8 @@
+{
+  "opts": {
+    "template": "node_modules/docdash",
+    "destination": "./docs/jwt",
+    "recurse": false,
+    "verbose": false
+  }
+}

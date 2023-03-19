@@ -2,12 +2,10 @@ const { verifyToken } = require("./index");
 
 async function AuthToken(ctx, next) {
   const { authorization } = ctx.req.headers;
-  const token = authorization.slice(7)||"";
+  const token = authorization.slice(7) || "";
   try {
     const { data } = await verifyToken(token);
-    /**
-     * 可将有用的信息进行挂载
-     */
+    ctx.tokenData = data; // 将token数据挂载至tokenData
     await next();
   } catch (error) {
     ctx.status = 401;
