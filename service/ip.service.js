@@ -5,9 +5,9 @@ const seq = require("../database/mySQL.js");
 //导入操作符
 const { Op } = require("sequelize");
 /**
- * ipv4 转 32位形式
- * @param {String} ip
- * @returns {getUint32} ipv4 32位二进制形式
+ * @description ipv4 转 32位形式
+ * @param {String} ipv4 形如:127.0.0.1
+ * @return {getUint32} ipv4 32位二进制形式
  */
 function inet_aton(ip) {
   // split into octets
@@ -21,15 +21,14 @@ function inet_aton(ip) {
 }
 
 /**
- * 32位转ipv4形式
- * @param {Number} num
- * @returns {String} ipv4地址
+ * @description 32位转ipv4形式
+ * @param {Number} 32为二进制ip
+ * @return {String} ipv4地址 形如:127.0.0.1
  */
 function inet_ntoa(num) {
   var nbuffer = new ArrayBuffer(4);
   var ndv = new DataView(nbuffer);
   ndv.setUint32(0, num);
-
   var a = new Array();
   for (var i = 0; i < 4; i++) {
     a[i] = ndv.getUint8(i);

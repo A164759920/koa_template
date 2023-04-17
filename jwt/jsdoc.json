@@ -3,6 +3,10 @@
     "template": "node_modules/docdash",
     "destination": "./docs/jwt",
     "recurse": false,
-    "verbose": false
+    "verbose": false,
+    "meta": {
+      "title": "JWT v1.1 文档",
+      "description": "JWT for koa2"
+    }
   }
 }
