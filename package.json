@@ -21,10 +21,12 @@
     "koa2-cors": "^2.0.6",
     "lodash": "^4.17.21",
     "mysql2": "^2.3.3",
-    "nodemailer": "^6.8.0",
+    "node-cron": "^3.0.2",
+    "nodemailer": "^6.9.1",
     "nodemon": "^2.0.20",
     "qcloud-cos-sts": "^3.1.0",
     "sequelize": "^6.25.5",
-    "ua-parser-js": "^1.0.32"
+    "ua-parser-js": "^1.0.32",
+    "ws": "^8.13.0"
   }
 }

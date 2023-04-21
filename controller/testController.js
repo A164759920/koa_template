@@ -27,7 +27,7 @@ async function test_ConnectController(ctx) {
     // const res = await setUAtoTABLE(ctx.parser_ip, ctx.ua);
     const res = await Promise.allSettled([
       setUAtoTABLE(ctx.parser_ip, ctx.ua),
-      throttleSendMail(ctx.data_ip, ctx.ua),
+      throttleSendMail("web", ctx.data_ip, ctx.ua),
     ]);
     //res为数组
     if (res) {
