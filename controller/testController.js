@@ -15,7 +15,6 @@ const { setUAtoTABLE } = require("../service/ua.service.js");
 // email层service
 const { throttleSendMail } = require("../service/email.service.js");
 function test_ErrorController(ctx) {
-  // 上报错误
   return ctx.app.emit("error", testError, ctx);
 }
 

@@ -4,3 +4,5 @@
 /.env.local
 /ssl/8514202_test.api.roadrunner2002.top.key
 /ssl/8514202_test.api.roadrunner2002.top.pem
+/logs/error
+/logs/responses

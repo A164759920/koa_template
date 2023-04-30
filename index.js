@@ -12,6 +12,7 @@ const mount = require("koa-mount");
 
 // custom require
 const errHandler = require("./errorHandle/errHandler.js");
+const { wireResLogger } = require("./middleware/log.middleware.js");
 
 const {
   HTTP_PORT,
@@ -23,6 +24,7 @@ const { router } = require("./router/index");
 
 const server = new Koa();
 server
+  .use(wireResLogger)
   .use(mount(MOUNT_NAME, static(Path.join(__dirname, "./static"))))
   .use(cors())
   .use(
@@ -38,6 +40,7 @@ server
   )
   .use(router.routes())
   .use(router.allowedMethods());
+
 // 开启错误上报
 server.on("error", errHandler);
 
