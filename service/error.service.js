@@ -1,3 +1,4 @@
+// 已弃用
 // 根据常见的系统error.CODE 翻译error原因
 /**
  * @param {String} code 系统的错误码

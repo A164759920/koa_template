@@ -8,14 +8,24 @@ const {
 } = require("../service/Files.service.js");
 // 错误层service
 const { translateErrorCode } = require("../service/error.service.js");
-const errorType = require("../errorHandle/errorType.js");
-const { testError } = require("../errorHandle/errorType.js");
 // ua层service
 const { setUAtoTABLE } = require("../service/ua.service.js");
 // email层service
 const { throttleSendMail } = require("../service/email.service.js");
 function test_ErrorController(ctx) {
-  return ctx.app.emit("error", testError, ctx);
+  try {
+    const { err } = ctx.request.query;
+    console.log(a);
+    if (err) {
+      ctx.body = {
+        code: 0,
+        msg: "测试",
+      };
+    }
+  } catch (error) {
+    ctx.app.emit("error", error, ctx);
+  }
+  // return ctx.app.emit("error", testError, ctx);
 }
 
 async function test_ConnectController(ctx) {

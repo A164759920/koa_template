@@ -6,33 +6,35 @@ let logger = {};
  */
 const formatError = (ctx, err) => {
   const { method, url } = ctx;
-  let body = ctx.request.body;
-  const user = ctx.state.user;
-  return { method, url, body, user, err };
+  let request_query = ctx.request.query;
+  let request_body = ctx.request.body;
+  return { method, url, request_body, request_query, err };
 };
-
-const formatRes = (ctx) => {
+/**
+ *
+ * @param {Object} ctx 上下文
+ * @param {Number} cosTime 耗费时间
+ * @returns
+ */
+const formatRes = (ctx, cosTime) => {
   const {
     method,
     url,
-    response: {
-      status,
-      message,
-      body: { code },
-    },
+    response: { status, message, body },
     // request: {
     //   header: { authorization },
     // },
   } = ctx;
-  let body = ctx.request.body;
-  const user = ctx.state.user;
+
+  let request_body = ctx.request.body;
+  let request_query = ctx.request.query;
   return {
     method,
     url,
-    user,
-    body,
-    // authorization,
-    response: { status, message, body: { code } },
+    cosTime: `${cosTime}ms`,
+    request_body,
+    request_query,
+    response: { status, message, body },
   };
 };
 
@@ -47,9 +49,9 @@ logger.errorLogger = (ctx, error) => {
   }
 };
 
-logger.resLogger = (ctx) => {
+logger.resLogger = (ctx, cosTime) => {
   if (ctx) {
-    resLogger.info(formatRes(ctx));
+    resLogger.info(formatRes(ctx, cosTime));
   }
 };
 
