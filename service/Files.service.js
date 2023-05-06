@@ -152,7 +152,8 @@ async function changeFilenameAndSave(oldFilename, newFilename, rel_aimPath) {
  * @param {String} rel_path  文件相对根目录的路径
  * @returns {Array} 返回扫描文件夹的结果，文件夹层级关系用数组嵌套表示
  */
-async function dfsFileNames(rel_path) {
+async function dfsFileNames(rel_path, excludeList) {
+  console.log(excludeList, typeof excludeList);
   const files = await asyncReadDir(rel_path);
   const res = [];
   for (const fileName of files) {
@@ -279,4 +280,8 @@ module.exports = {
   scanFilesByDirName,
   createFrontedUrl,
   mergeMultiFile,
+  asyncWriteFile,
+  asyncReadDir,
+  dfsFileNames,
+  asyncReadStat,
 };

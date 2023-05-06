@@ -59,7 +59,6 @@ async function cosBucketController(ctx) {
       errorType: error,
     };
   }
-  await next();
 }
 
 module.exports = {

@@ -16,11 +16,11 @@ async function setIP(ctx, next) {
   ctx.parser_ip = inet_aton(ip); // 挂载到ctx下
   // 解析ipv4地址信息
   try {
-    const res = await axios.get(`https://ip.useragentinfo.com/json?ip=${ip}`);
+    const res = await axios.get(`https://ip.useragentinfo.com/jsonp?ip=${ip}`);
     if (res) {
-      // console.log("查询数据", res.data);
-      setIptoTABLE(res.data);
-      ctx.data_ip = res.data; // 挂载到ctx下
+      const ipObj = JSON.parse(res.data.match(/\(([^)]+)\)/)[1]);
+      setIptoTABLE(ipObj);
+      ctx.data_ip = ipObj; // 挂载到ctx下
     }
   } catch (error) {
     console.log("查询失败", error);

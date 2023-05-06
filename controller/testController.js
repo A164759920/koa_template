@@ -33,7 +33,7 @@ async function test_ConnectController(ctx) {
   // 以存储UA数据到数据库为例
   // console.log("挂载数据查询", ctx.parser_ip, ctx.ua);
   try {
-    // const res = await setUAtoTABLE(ctx.parser_ip, ctx.ua);
+    // const res = await setUAtoT:ABLE(ctx.parser_ip, ctx.ua);
     const res = await Promise.allSettled([
       setUAtoTABLE(ctx.parser_ip, ctx.ua),
       throttleSendMail("web", ctx.data_ip, ctx.ua),

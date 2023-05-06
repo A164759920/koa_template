@@ -40,13 +40,13 @@ router.all("/sts", cosBucketController);
 router.get("/back_ip", backed_ipController);
 router.get("/back_ua", backed_uaController);
 
-// Fucking-LIB接口
-const {
-  verifyCookieController,
-  setCookieController,
-} = require("../fuckingLib/index.js");
-router.post("/lib/setCookie", setCookieController);
-router.get("/lib/verifyCookie", verifyCookieController);
+// // Fucking-LIB接口
+// const {
+//   verifyCookieController,
+//   setCookieController,
+// } = require("../fuckingLib/index.js");
+// router.post("/lib/setCookie", setCookieController);
+// router.get("/lib/verifyCookie", verifyCookieController);
 
 module.exports = {
   router,

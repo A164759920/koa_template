@@ -38,8 +38,8 @@ async function MysendMail() {
   switch (category) {
     case "web":
       {
-        const ua = [...arguments][0];
-        const ipObj = [...arguments][1];
+        const ua = [...arguments][1];
+        const ipObj = [...arguments][0];
         const { os, browser, device } = ua;
         console.log(ua, ipObj);
         mailOptions = {
