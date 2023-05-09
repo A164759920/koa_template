@@ -14,7 +14,7 @@ const path = require("path");
 let mysftp = "";
 
 const fs = require("fs");
-const excludeList = ["node_modules", "fuckingLib", ".git"];
+const excludeList = ["/node_modules", "/fuckingLib", "/.git", "/logs"];
 const remotePath = "/root/test";
 const remote_existed_folders = [];
 const dirTasks = [];
@@ -37,7 +37,7 @@ client.on("ready", () => {
         list.forEach((item) => {
           const { filename } = item;
           if (filename.split(".").length <= 1 && filename !== "node_modules") {
-            console.log(filename);
+            //  console.log(filename);
             remote_existed_folders.push(filename);
           }
         });
@@ -124,8 +124,9 @@ function create_upload_task(rel_localFilePath, remoteRawPath) {
  * @returns
  */
 function walk(basePath, fileName) {
+  const rel_localFilePath = `${basePath.split(".")[1]}\/${fileName}`;
   const isDir = fs.statSync(path.resolve(basePath, fileName)).isDirectory();
-  if (!excludeList.includes(fileName)) {
+  if (!excludeList.includes(rel_localFilePath)) {
     if (isDir) {
       // 创建文件夹
       const dirPath = remotePath + basePath.split(".")[1] + `\/${fileName}`;
